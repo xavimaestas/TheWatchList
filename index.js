@@ -11,7 +11,7 @@ const tomatoImg ="tomato.png"
 
     search.addEventListener("click", () => {
         const input = document.getElementById("search-input").value
-        fetch(`http://www.omdbapi.com/?t=${input}&apikey=88e64e6b&s`)
+        fetch(`https://www.omdbapi.com/?t=${input}&apikey=88e64e6b&s`)
         .then(result => result.json())
         .then(data => {
             console.log(data)
