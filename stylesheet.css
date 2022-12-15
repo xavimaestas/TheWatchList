@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0; 
+    background-color:#121212;
+    font-family: 'Inter', sans-serif;
+    color: white; 
+    min-width: 400px; 
+    height: 100vh; 
+    border: 1px solid green; 
+}
+
+#header {
+    margin: 0;
+    padding: 1rem 0;
+    background-image: url("jeff-pierre-5X5I20O_Vbg-unsplash.jpg");
+    background-size: cover;
+    background-position: 0px 200px;
+    background-repeat: none; 
+}
+
+#search-bar {
+    display: inline-block;
+    position: absolute;
+    
+    
+}
+
+/* movie box */
+
+#rating {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+}
+
+#rating img {
+    margin-right: 0.5rem; 
+}
+
+#tomatoImg {
+    width: 25px; 
+}
