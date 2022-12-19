@@ -7,6 +7,7 @@ const description = document.getElementById("movie-description")
 const movieImg = document.getElementById("movie-img")
 const watchLink = document.getElementById("watch-movie")
 let movieArray = []
+let movieRatingArray = []
 
 
 
@@ -68,18 +69,51 @@ let movieArray = []
                 .then(res => res.json())
                 .then(data => {
                     for(let movie = 0; movie < 5; movie ++){
-                    console.log(data.Search[movie].Title)
+                    // console.log(data.Search[movie].Title)
                     movieArray.push(data.Search[movie].Title)
+
+                    document.getElementById("movie-block").innerHTML += `
+
+                <div id="text-block">
+                    <div id="title-rating-div">
+                        <h2 id="title">${data.Search[movie].Title}</h2>
+                        <p id="rating">${movieRatingArray[1]}</p>
+                    </div>
+
+                    <div id="genre-runtime-div">
+                        
+                        <p id="genre">${data.Search[movie].Genre}</p>
+                        <button id="watchlist-btn">add to watchlist</button>
+                        <div id="watch-movie"><a href="https://vidsrc.me/embed/${data.Search[movie].imdbID}/" target="_"><p>Watch Movie</p></a></div>
+                    </div>
+
+                    <div id="description-div">
+                        <p id="movie-description">${movieArray[0]}</p>
+                    </div>
+                    
+                </div>
+
+                <img src="${data.Search[movie].Poster}" id="movie-img">`
+
                     }
+                    getData()
                 })
-                console.log(movieArray)
+                
         })
         
     }
 
-    const getData = async function(search){
-        fetch(`https://www.omdbapi.com/?t=${input}&apikey=88e64e6b&s`)
-        
+    async function getData(){
+        for(let movie = 0; movie < 5; movie ++){
+            const response = await fetch(`https://www.omdbapi.com/?apikey=88e64e6b&s&t=${movieArray[movie]}`)
+            const search = await response.json()
+            movieRatingArray.push(search.Ratings[])
+            // console.log(search)
+            console.log(movieRatingArray)
+            // console.log(search.Genre)
+            // console.log(search.imdbID)
+            // console.log(search.Poster)
+        }
     }
 
     getSearch()
