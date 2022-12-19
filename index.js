@@ -6,50 +6,73 @@ const genre = document.getElementById("genre")
 const description = document.getElementById("movie-description")
 const movieImg = document.getElementById("movie-img")
 const watchLink = document.getElementById("watch-movie")
+let movieArray = []
 
 
 
-    search.addEventListener("click", () => {
-        const input = document.getElementById("search-input").value
-        fetch(`https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s`)
-        .then(result => result.json())
-        .then(data => {
-            console.log(data)
-            console.log(data.Search[0].Title)
-            console.log(data.Title)
-            // movie block HTML
 
-            for(let movie = 0; movie < 5; movie ++){
-            document.getElementById("movie-block").innerHTML += `
-            <div id="text-block">
-            <div id="title-rating-div">
-                <h2 id="title">${data.Search[movie].Title}</h2>
-                <p id="year">${data.Search[movie].Year}</p>
-            </div>
-
-            <div id="genre-runtime-div">
+    function getSearch() {
+       
+        search.addEventListener("click", function(){
+            let input = document.getElementById("search-input").value
+            fetch(`https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s`)
+                .then(res => res.json())
+                .then(data => {
+                    for(let movie = 0; movie < 5; movie ++){
+                    // console.log(data.Search[movie].Title)
+                    movieArray.push(data.Search[movie].Title)
+            
+                    }
+                    getData()
+                    
+                })
                 
-                <p id="genre">${data.Search[movie].Genre}</p>
-                <button id="watchlist-btn">add to watchlist</button>
-                <div id="watch-movie"><a href="https://vidsrc.me/embed/${data.Search[movie].imdbID}/" target="_"><p>Watch Movie</p></a></div>
-            </div>
-
-            <div id="description-div">
-                <p id="movie-description">${data.Search[movie].Plot}</p>
-            </div>
-        </div>
-
-        <img src="${data.Search[movie].Poster}" id="movie-img">
-        `
-            }   
-// insert other fetch here that grabs other info that fetch can't 
-        
         })
         
-    })
+    }
+
+    async function getData(){
+        for(let movie = 0; movie < 5; movie ++){
+            const response = await fetch(`https://www.omdbapi.com/?apikey=88e64e6b&s&t=${movieArray[movie]}`)
+            const search = await response.json()
+
+            document.getElementById("movie-block").innerHTML += `
+
+            <div id="text-block">
+                <div id="title-rating-div">
+                    <h2 id="title">${search.Title}</h2>
+                    <p id="rating">${search.Ratings[0].Source} ${search.Ratings[0].Value}</p>
+                </div>
+
+                <div id="genre-runtime-div">
+                    
+                    <p id="genre">${search.Genre}</p>
+                    <button id="watchlist-btn">add to watchlist</button>
+                    <div id="watch-movie"><a href="https://vidsrc.me/embed/${search.imdbID}/" target="_"><p>Watch Movie</p></a></div>
+                </div>
+
+                <div id="description-div">
+                    <p id="movie-description">${search.Plot}</p>
+                </div>
+                
+            </div>
+
+            <img src="${search.Poster}" id="movie-img">`
 
 
-    // 
+            // movieGenreArray.push(movieRatingArray[movie].Genre)
+            console.log(search)
+            // console.log(movieGenreArray)
+            // console.log(search.Genre)
+            // console.log(search.imdbID)
+            // console.log(search.Poster)
+        }
+    }
+
+    getSearch()
+
+
+   
 
 
 
