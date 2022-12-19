@@ -9,6 +9,7 @@ const watchLink = document.getElementById("watch-movie")
 let movieArray = []
 
 
+
     // Promise.all([
     //     fetch("https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s").then(res => res.json),
     //     fetch("https://www.omdbapi.com/?t=${input}&apikey=88e64e6b&s").then(res => res.json)
@@ -21,41 +22,67 @@ let movieArray = []
 
 
 
-    search.addEventListener("click", () => {
-        const input = document.getElementById("search-input").value
-        let urls = [
-            `https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s`,
-            `https://www.omdbapi.com/?t=${input}&apikey=88e64e6b&s`
-        ]
-            const fetchData = async () => {
-                try {
-                const response = await Promise.all(
-                    urls.map(url => fetch(url).then(res => res.json()))
-                ).then(data => {
-                    console.log(data)
-                    for(let movie = 0; movie < 5; movie ++){
-                        let imd = data[0].Search[movie].imdbID
-                        document.getElementById("movie-block").innerHTML += `
-                                        <div id="text-block">
-                                        <div id="title-rating-div">
-                                            <h2 id="title">${data[0].Search[movie].Title}</h2>
-                                            <p id="year">${data[1].Actors}</p>
-                                        </div>`
-                                        movieArray.push(data[0].Search[movie].Title)
-                                        console.log(movieArray)
-                    }
+    // search.addEventListener("click", () => {
 
-                    
+
+        // const input = document.getElementById("search-input").value
+        // let urls = [
+        //     `https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s`,
+        //     `https://www.omdbapi.com/?t=${input}&apikey=88e64e6b&s`
+        // ]
+        //     const fetchData = async () => {
+        //         try {
+        //         const response = await Promise.all(
+        //             urls.map(url => fetch(url).then(res => res.json()))
+        //         ).then(data => {
+        //             console.log(data)
+        //             for(let movie = 0; movie < 5; movie ++){
+        //                 let imd = data[0].Search[movie].imdbID
+        //                 document.getElementById("movie-block").innerHTML += `
+        //                                 <div id="text-block">
+        //                                 <div id="title-rating-div">
+        //                                     <h2 id="title">${data[0].Search[movie].Title}</h2>
+        //                                     <p id="year">${data[2].Actors}</p>
+        //                                 </div>`
+        //                                 movieArray.push(data[0].Search[movie].Title)
+        //                                 console.log(movieArray)
+        //             }
+
                 
-                })
-                console.log(response)
-                } catch (error) {
-                console.log("Error", error)
-                }
-            } 
-            fetchData()  
+        //         })
+        //         console.log(response)
+        //         } catch (error) {
+        //         console.log("Error", error)
+        //         }
+        //     } 
+        //     fetchData()  
             
-    })
+    // })
+
+
+    function getSearch() {
+       
+        search.addEventListener("click", function(){
+            const input = document.getElementById("search-input").value
+            fetch(`https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s`)
+                .then(res => res.json())
+                .then(data => {
+                    for(let movie = 0; movie < 5; movie ++){
+                    console.log(data.Search[movie].Title)
+                    movieArray.push(data.Search[movie].Title)
+                    }
+                })
+                console.log(movieArray)
+        })
+        
+    }
+
+    const getData = async function(search){
+        fetch(`https://www.omdbapi.com/?t=${input}&apikey=88e64e6b&s`)
+        
+    }
+
+    getSearch()
 
 
     // 
