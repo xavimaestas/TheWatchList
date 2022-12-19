@@ -7,96 +7,24 @@ const description = document.getElementById("movie-description")
 const movieImg = document.getElementById("movie-img")
 const watchLink = document.getElementById("watch-movie")
 let movieArray = []
-let movieRatingArray = []
 
 
-
-    // Promise.all([
-    //     fetch("https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s").then(res => res.json),
-    //     fetch("https://www.omdbapi.com/?t=${input}&apikey=88e64e6b&s").then(res => res.json)
-    //     // data.Search[movie].Title
-    // ]).then(movies => console.log(movies))
-
-    
-    
-        
-
-
-
-    // search.addEventListener("click", () => {
-
-
-        // const input = document.getElementById("search-input").value
-        // let urls = [
-        //     `https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s`,
-        //     `https://www.omdbapi.com/?t=${input}&apikey=88e64e6b&s`
-        // ]
-        //     const fetchData = async () => {
-        //         try {
-        //         const response = await Promise.all(
-        //             urls.map(url => fetch(url).then(res => res.json()))
-        //         ).then(data => {
-        //             console.log(data)
-        //             for(let movie = 0; movie < 5; movie ++){
-        //                 let imd = data[0].Search[movie].imdbID
-        //                 document.getElementById("movie-block").innerHTML += `
-        //                                 <div id="text-block">
-        //                                 <div id="title-rating-div">
-        //                                     <h2 id="title">${data[0].Search[movie].Title}</h2>
-        //                                     <p id="year">${data[2].Actors}</p>
-        //                                 </div>`
-        //                                 movieArray.push(data[0].Search[movie].Title)
-        //                                 console.log(movieArray)
-        //             }
-
-                
-        //         })
-        //         console.log(response)
-        //         } catch (error) {
-        //         console.log("Error", error)
-        //         }
-        //     } 
-        //     fetchData()  
-            
-    // })
 
 
     function getSearch() {
        
         search.addEventListener("click", function(){
-            const input = document.getElementById("search-input").value
+            let input = document.getElementById("search-input").value
             fetch(`https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s`)
                 .then(res => res.json())
                 .then(data => {
                     for(let movie = 0; movie < 5; movie ++){
                     // console.log(data.Search[movie].Title)
                     movieArray.push(data.Search[movie].Title)
-
-                    document.getElementById("movie-block").innerHTML += `
-
-                <div id="text-block">
-                    <div id="title-rating-div">
-                        <h2 id="title">${data.Search[movie].Title}</h2>
-                        <p id="rating">${movieRatingArray[1]}</p>
-                    </div>
-
-                    <div id="genre-runtime-div">
-                        
-                        <p id="genre">${data.Search[movie].Genre}</p>
-                        <button id="watchlist-btn">add to watchlist</button>
-                        <div id="watch-movie"><a href="https://vidsrc.me/embed/${data.Search[movie].imdbID}/" target="_"><p>Watch Movie</p></a></div>
-                    </div>
-
-                    <div id="description-div">
-                        <p id="movie-description">${movieArray[0]}</p>
-                    </div>
-                    
-                </div>
-
-                <img src="${data.Search[movie].Poster}" id="movie-img">`
-
+            
                     }
                     getData()
+                    
                 })
                 
         })
@@ -107,9 +35,34 @@ let movieRatingArray = []
         for(let movie = 0; movie < 5; movie ++){
             const response = await fetch(`https://www.omdbapi.com/?apikey=88e64e6b&s&t=${movieArray[movie]}`)
             const search = await response.json()
-            movieRatingArray.push(search.Ratings[])
-            // console.log(search)
-            console.log(movieRatingArray)
+
+            document.getElementById("movie-block").innerHTML += `
+
+            <div id="text-block">
+                <div id="title-rating-div">
+                    <h2 id="title">${search.Title}</h2>
+                    <p id="rating">${search.Ratings[0].Source} ${search.Ratings[0].Value}</p>
+                </div>
+
+                <div id="genre-runtime-div">
+                    
+                    <p id="genre">${search.Genre}</p>
+                    <button id="watchlist-btn">add to watchlist</button>
+                    <div id="watch-movie"><a href="https://vidsrc.me/embed/${search.imdbID}/" target="_"><p>Watch Movie</p></a></div>
+                </div>
+
+                <div id="description-div">
+                    <p id="movie-description">${search.Plot}</p>
+                </div>
+                
+            </div>
+
+            <img src="${search.Poster}" id="movie-img">`
+
+
+            // movieGenreArray.push(movieRatingArray[movie].Genre)
+            console.log(search)
+            // console.log(movieGenreArray)
             // console.log(search.Genre)
             // console.log(search.imdbID)
             // console.log(search.Poster)
@@ -119,55 +72,7 @@ let movieRatingArray = []
     getSearch()
 
 
-    // 
+   
 
 
 
-    // fetch(`https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s`)
-    //             .then(result => result.json())
-    //             .then(data => {
-                    
-    //                 // movie block HTML
-    //                 movieArray.push(data)
-    
-    //                 for(let movie = 0; movie < 5; movie ++){
-                        
-    //                 document.getElementById("movie-block").innerHTML += `
-    //                 <div id="text-block">
-    //                 <div id="title-rating-div">
-    //                     <h2 id="title">${data.Search[movie].Title}</h2>
-    //                     <p id="year">${data.Search[movie].Year}</p>
-    //                 </div>
-    
-    //                 <div id="genre-runtime-div">
-                        
-    //                     <p id="genre">${data.Search[movie].Genre}</p>
-    //                     <button id="watchlist-btn">add to watchlist</button>
-    //                     <div id="watch-movie"><a href="https://vidsrc.me/embed/${data.Search[movie].imdbID}/" target="_"><p>Watch Movie</p></a></div>
-    //                 </div>
-    
-    //                 <div id="description-div">
-    //                     <p id="movie-description">${movieArray[0]}</p>
-    //                 </div>
-                   
-    //             </div>
-    
-    //             <img src="${data.Search[movie].Poster}" id="movie-img">
-    //             `
-    
-    //             fetch(`https://www.omdbapi.com/?t=${data.Search[movie].Title}&apikey=88e64e6b&s`)
-    //                 .then(result => result.json())
-    //                 .then(watch => {
-    //                     movieArray.push(watch.Title)
-    //                     for (let num of movieArray){
-    //                         console.log(num)
-    //                     }
-    //                 })
-    //             }   
-    
-    
-    // // insert other fetch here that grabs other info that fetch can't 
-            
-    
-                
-    //         })
