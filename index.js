@@ -12,7 +12,7 @@ let movieArray = []
 
 // movie search functions
 
-    function getSearch() {
+    function getMovie() {
        
         movieSearch.addEventListener("click", function(){
             html.innerHTML = ""
@@ -20,11 +20,11 @@ let movieArray = []
             fetch(`https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s`)
                 .then(res => res.json())
                 .then(data => {
-                    for(let movie = 0; movie < 5; movie ++){
+                    for(let movie = 0; movie < 10; movie ++){
                     // console.log(data.Search[movie].Title)
                     movieArray.push(data.Search[movie].Title)
-                        console.log(input)
-                        console.log(movieArray)
+                        // console.log(input)
+                        // console.log(movieArray)
                     }
                     getData()
                     
@@ -36,8 +36,8 @@ let movieArray = []
     }
 
     async function getData(){
-        for(let movie = 0; movie < 5; movie ++){
-            const response = await fetch(`https://www.omdbapi.com/?apikey=88e64e6b&s&t=${movieArray[movie]}`)
+        for(let movie = 0; movie < 10; movie ++){
+            const response = await fetch(`https://www.omdbapi.com/?apikey=88e64e6b&s&t=${movieArray[movie]}&type=movie`)
             const search = await response.json()
 
             html.innerHTML += `
@@ -70,7 +70,7 @@ let movieArray = []
             
 
             // movieGenreArray.push(movieRatingArray[movie].Genre)
-            console.log(search)
+            // console.log(search)
             // console.log(movieGenreArray)
             // console.log(search.Genre)
             // console.log(search.imdbID)
@@ -79,11 +79,10 @@ let movieArray = []
         }
         movieArray = []
         
-        console.log(movieArray)
     }
 
    
-    getSearch()
+    getMovie()
 
 
 

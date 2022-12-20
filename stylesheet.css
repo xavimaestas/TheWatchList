@@ -4,7 +4,8 @@ body {
     background-color:#121212;
     font-family: 'Inter', sans-serif;
     color: white; 
-    width: 800px; 
+    max-width: 900px; 
+    min-width: 640px;
    
 }
 
@@ -51,7 +52,7 @@ body {
 /* movie box */
 
 #movie-block {
-    margin: 1rem;
+    margin: 2rem;
 }
 
 #movie-container {
