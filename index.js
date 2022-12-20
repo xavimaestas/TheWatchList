@@ -1,4 +1,4 @@
-const search = document.getElementById("search-btn")
+const movieSearch = document.getElementById("movie-search-btn")
 const title = document.getElementById("title")
 const rating = document.getElementById("rating")
 const year = document.getElementById("year")
@@ -9,12 +9,12 @@ const watchLink = document.getElementById("watch-movie")
 let movieArray = []
 
 
-
+// movie search functions
 
     function getSearch() {
        
-        search.addEventListener("click", function(){
-            let input = document.getElementById("search-input").value
+        movieSearch.addEventListener("click", function(){
+            let input = document.getElementById("movie-search-input").value
             fetch(`https://www.omdbapi.com/?s=${input}&apikey=88e64e6b&s`)
                 .then(res => res.json())
                 .then(data => {
@@ -24,7 +24,6 @@ let movieArray = []
             
                     }
                     getData()
-                    
                 })
                 
         })
@@ -57,8 +56,9 @@ let movieArray = []
                 
             </div>
 
-            <img src="${search.Poster}" id="movie-img">`
-
+            <img src="${search.Poster}" id="movie-img">
+            <hr>`
+            
 
             // movieGenreArray.push(movieRatingArray[movie].Genre)
             console.log(search)
@@ -72,7 +72,6 @@ let movieArray = []
     getSearch()
 
 
-   
 
 
 

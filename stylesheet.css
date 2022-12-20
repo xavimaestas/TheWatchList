@@ -4,9 +4,8 @@ body {
     background-color:#121212;
     font-family: 'Inter', sans-serif;
     color: white; 
-    width: 400px; 
-    height: 100vh; 
-    border: 1px solid green; 
+    width: 420px; 
+   
 }
 
 #header {
@@ -18,14 +17,42 @@ body {
     background-repeat: none; 
 }
 
-#search-bar {
-    display: inline-block;
-    position: absolute;
-    
-    
+#header h1 {
+    margin: 0 0 0 1rem;
 }
 
+#header h4 {
+    margin: 0.75rem;
+}
+
+#find-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+#search-div {
+    display: flex;
+}
+
+.movie-tv-search {
+    display: flex; 
+    margin: 0 3px; 
+    align-items: center;
+    
+
+}
+
+
+
+
+
 /* movie box */
+
+#movie-block {
+    margin: 1rem;
+    
+}
 
 #rating {
     display: flex; 
@@ -44,3 +71,4 @@ body {
 #movie-img {
     width: 100px;
 }
+
