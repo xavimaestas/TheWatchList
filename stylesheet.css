@@ -42,8 +42,9 @@ body {
     margin: 0 3px; 
     align-items: center;
     
-
 }
+
+
 
 
 
@@ -56,6 +57,7 @@ body {
 }
 
 #movie-container {
+    padding-bottom: 3rem;
     display: flex;
     align-items: center;
 }
