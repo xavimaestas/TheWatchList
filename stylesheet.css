@@ -4,8 +4,8 @@ body {
     background-color:#121212;
     font-family: 'Inter', sans-serif;
     color: white; 
-    max-width: 900px; 
-    min-width: 640px;
+    max-width: 800px; 
+    /* use 600px for media query */
    
 }
 
@@ -53,13 +53,15 @@ body {
 /* movie box */
 
 #movie-block {
-    margin: 2rem;
+    margin: 0 2rem;
 }
 
 #movie-container {
+    margin-bottom: 3rem;
     padding-bottom: 3rem;
     display: flex;
     align-items: center;
+    max-width: 800px;
 }
 
 #text-block {
@@ -106,10 +108,22 @@ body {
    margin-right: 3rem;
 }
 
+#watch-movie {
+    margin-top: 2rem;
+}
+
 #movie-img {
     width: 175px;
     height: 275px;
     order: -1;
-    margin: 0 1.5rem 0 0.5rem;
+    margin: 3rem 1.5rem 0 0;
+}
+
+#season-input {
+    margin-bottom: 1rem;
+}
+
+hr {
+    margin-top: 1rem;
 }
 
