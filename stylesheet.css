@@ -54,14 +54,15 @@ body {
 
 #movie-block {
     margin: 0 2rem;
+    
 }
 
 #movie-container {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
+    margin-top: 2rem;
     display: flex;
     align-items: center;
     max-width: 800px;
+    
 }
 
 #text-block {
@@ -113,17 +114,59 @@ body {
 }
 
 #movie-img {
-    width: 175px;
-    height: 275px;
+    max-width: 175px;
+    max-height: 275px;
+    width: auto;
+    height: auto;
     order: -1;
     margin: 3rem 1.5rem 0 0;
 }
 
 #season-input {
-    margin-bottom: 1rem;
+    display: none;
 }
 
-hr {
-    margin-top: 1rem;
+@media (max-width: 660px) {
+
+    body {
+       background: red;
+       min-width: 430px;
+    }
+
+    #title {
+        font-size: 1.25rem; 
+    }
+
+    #genre {
+        display: none;
+    }
+
+   
+
+    #movie-description {
+        max-width: 100%; 
+        font-size: 0.75rem;
+       
+        
+    }
+
+
+    #movie-img {
+        margin: 0 1rem 0 0;
+        width: 125px;
+        height: auto;
+       
+    }
+
+    #movie-container {
+        height: 100%;
+        min-width: 400px
+    }
+
+    #runtime {
+        margin: 0 0.5rem 0 0; 
+    }
+ 
+
 }
 

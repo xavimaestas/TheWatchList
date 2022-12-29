@@ -2,7 +2,7 @@ const movieSearch = document.getElementById("movie-search-btn")
 const tvSearch = document.getElementById("tv-search-btn")
 const title = document.getElementById("title")
 const rating = document.getElementById("rating")
-const year = document.getElementById("year")
+const runtime = document.getElementById("runtime")
 const genre = document.getElementById("genre")
 const description = document.getElementById("movie-description")
 const movieImg = document.getElementById("movie-img")
@@ -64,22 +64,44 @@ let tvArray = []
 
                     <div id="description-div">
                         <p id="movie-description">${search.Plot}</p>
+<<<<<<< Updated upstream
                         <div id="watch-movie"><a href="https://vidsrc.me/embed/${search.imdbID}/" target="_">
                         <p>Watch Movie</p></a>
                       
+=======
+
+                        <div id="link-list">
+
+                            <div id="watch-movie"><a href="https://vidsrc.me/embed/${search.imdbID}" target="_">
+                            <p>Watch Movie</p></a>
+                            </div>
+
+                            <div id="tv-link"><a href="https://vidsrc.me/embed/${search.imdbID}/${tvEpisode}" target="_">
+                            <p>Watch Movie</p></a>
+                            </div>
+
+                        </div> 
+
+                        <div id="season-input">
+>>>>>>> Stashed changes
                             <label for="season">Enter Season #</label>
                             <input type="number" id="season" name="season" min="1" max="15">
                             <label for="episode">Enter Episode # </label>
                             <input type="number" id="episode" name="season" min="1" max="15">
                             <button id="season-submit">submit</button>
+<<<<<<< Updated upstream
                        
+=======
+>>>>>>> Stashed changes
                         </div>
                         
                     </div>
                 </div>
-                <img src="${search.Poster}" id="movie-img">
+                
+                    <img src="${search.Poster}" id="movie-img">
+                    
             </div>
-            <hr> 
+           <hr>
             `
 
             // movieGenreArray.push(movieRatingArray[movie].Genre)
