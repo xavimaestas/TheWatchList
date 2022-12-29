@@ -24,6 +24,7 @@ body {
 
 #header h4 {
     margin: 0.75rem;
+    display: none;
 }
 
 #find-header {
@@ -109,6 +110,10 @@ body {
    margin-right: 3rem;
 }
 
+#watchlist-btn {
+    display: none; 
+}
+
 #watch-movie {
     margin-top: 2rem;
 }
@@ -126,10 +131,21 @@ body {
     display: none;
 }
 
+#description-div a {
+    color: goldenrod
+
+}
+
+#description-div a:hover,
+#description-div a:active {
+    color: red;
+
+}
+
 @media (max-width: 660px) {
 
     body {
-       background: red;
+
        min-width: 430px;
     }
 
@@ -159,7 +175,6 @@ body {
     }
 
     #movie-container {
-        height: 100%;
         min-width: 400px
     }
 
